@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import { App } from './components/App';
 
 const app = document.getElementById('app');
 
-ReactDOM.render(<h1>Hello world!</h1>, app);
+ReactDOM.render(<App title="Hola mundo!" />, app); 
