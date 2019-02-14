@@ -1,6 +1,8 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
+const devMode = process.env.NODE_ENV !== 'production';
+
 module.exports = {
        entry: './src/index.tsx',
        output: {
@@ -19,7 +21,37 @@ module.exports = {
            },
            {
              test: /\.scss$/,
-             use: [ MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader' ]
+             use: [ 
+               devMode ? 'style-loader' : MiniCssExtractPlugin.loader, 
+               'css-loader', 
+               'sass-loader' 
+             ],
+           },
+           {
+             test: /\.(png|jpg|gif|svg)$/,
+             use: [
+               {
+                 loader: 'file-loader',
+                 options: {
+                   name: '[path][name].[ext]',
+                   publicPath: '/',
+                   outputPath: 'assets/'
+                 },
+               }
+             ]
+           },
+           {
+             test: /\.(woff(2)?|ttf|eot|svg|otf)$/,
+             use: [
+               {
+                 loader: 'file-loader',
+                 options: {
+                   name: '[path][name].[ext]',
+                   publicPath: '/',
+                   outputPath: 'fonts/'
+                 },
+               }
+             ]
            },
            {
              enforce: 'pre',
@@ -37,3 +69,4 @@ module.exports = {
       devtool: 'source-map'
 };
 
+//'./style.css'

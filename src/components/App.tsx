@@ -1,24 +1,26 @@
 import * as React from 'react';
+import { Header } from './Header'
+import '../styles/main.scss';
+import { MainMenu } from './MainMenu';
 
-export class App extends React.Component<IProps, IState>{
+export class App extends React.Component<any, any>{
   
-  constructor(props: IProps){
-    super(props);
-    this.state = {
-      tasks: [],
-    }
-  }
+
   render(){
     return(
-      <h1>{this.props.title}</h1>
+      <div id="landing-page-top">
+        <div className="container">
+         <Header />
+          <div className="caption-text-container">
+              <h2>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              </h2>
+              <button className="cta-button">CTA Button</button>
+          </div>
+        </div>
+        <MainMenu />
+      </div>
     );
   }
 }
   
-interface IProps{
-  title: string;
-}
-
-interface IState{
-  tasks: [];
-}
